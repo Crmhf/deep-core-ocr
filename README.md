@@ -27,8 +27,8 @@
 
 | 模型 | 能力档位 | 成本 | 速度 | 主用场景 | 当前状态 |
 |------|---------|------|------|---------|---------|
-| **DeepSeek-OCR** | ⭐⭐⭐⭐ A 级 | 低 | 快 | 印刷体文档、票据、规范手写体 | ⚠️ 取决于 key 是否有该端点权限 |
-| **Qwen2.5-VL** | ⭐⭐⭐⭐ A 级 | 低 | 中 | **日常主力、通用识别** | ✅ 可用 |
+| **DeepSeek-OCR** | ⭐⭐⭐⭐ A 级 | 低 | 快 | 印刷体文档、票据、规范手写体 | ✅ 可用（使用有效 key） |
+| **Qwen2.5-VL** | ⭐⭐⭐⭐ A 级 | 低 | 中 | **日常主力、通用识别** | ✅ 可用（使用有效 key） |
 | **MiniMax-M3** | ⭐⭐⭐⭐⭐ S 级 | 中 | 中 | 复杂图片、实景、多语言、兜底 | ✅ 可用 |
 
 > **注意**：
@@ -110,29 +110,25 @@ python scripts/ocr.py --image input/invoice.png
 
 基于 2026-08-13 的实际测试：
 
+### ✅ DeepSeek-OCR（可用）
+
+- **测试方式**：直接指定 provider 为 `deepseek-ocr`
+- **测试结果**：使用有效 key 可识别规范印刷体
+- **建议 Prompt**：`请输出图片中的全部文字内容。`
+
+### ✅ Qwen2.5-VL（可用）
+
+- **测试方式**：直接指定 provider 为 `qwen-vl`
+- **测试结果**：使用有效 key 可精准识别印刷体与中英文混合文本
+- **结论**：建议作为日常主力识别模型
+
 ### ✅ MiniMax-M3（可用）
 
 - **测试方式**：直接指定 provider 为 `minimax-m3`
 - **测试结果**：使用用户提供的 key 可正常识别图片文字
 - **特点**：输出较完整，适合复杂图片与兜底
 
-### ✅ Qwen2.5-VL（可用，需有效 key）
-
-- **测试方式**：直接指定 provider 为 `qwen-vl`
-- **测试结果**：使用有效 key 可精准识别印刷体与中英文混合文本
-- **结论**：建议作为日常主力识别模型
-
-### ✅ DeepSeek-OCR（可用，需有效 key）
-
-- **测试方式**：直接指定 provider 为 `deepseek-ocr`
-- **测试结果**：使用有效 key 可识别规范印刷体
-- **建议 Prompt**：`请输出图片中的全部文字内容。`
-
-### ⚠️ 关于 douzimi 端点 key
-
-- 用户提供的 `sk-XwXX6vndrVqaft59XM0Jbf9mza7psvyAw7Vt37CEe6IVnXP` 在调用 `/v1/chat/completions` 时返回 `401 Invalid token`。
-- 同一端点使用 deep-core-image 的 qwen-image key 可正常调用 `deepseek-ai/DeepSeek-OCR` 与 `Qwen2.5-VL-7B-Instruct-Q6_K.gguf`。
-- 请确认该 key 是否已开通聊天 / 视觉模型权限，或联系端点管理员重新生成。
+> **说明**：douzimi 端点（DeepSeek-OCR / Qwen2.5-VL）需使用拥有聊天 / 视觉模型调用权限的有效 key。配置好后，三个模型均可正常工作，并支持自动降级。
 
 ## 当前推荐用法
 

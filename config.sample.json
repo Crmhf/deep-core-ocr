@@ -1,0 +1,28 @@
+{
+    "default_provider": "deepseek-ocr",
+    "providers": {
+        "deepseek-ocr": {
+            "api_key": "YOUR_DOUZIMI_API_KEY",
+            "base_url": "http://cf.douzimi.com:58728/v1",
+            "model": "deepseek-ai/DeepSeek-OCR",
+            "endpoint_type": "openai_compatible"
+        },
+        "qwen-vl": {
+            "api_key": "YOUR_DOUZIMI_API_KEY",
+            "base_url": "http://cf.douzimi.com:58728/v1",
+            "model": "Qwen2.5-VL-7B-Instruct-Q6_K.gguf",
+            "endpoint_type": "openai_compatible"
+        },
+        "minimax-m3": {
+            "api_key": "YOUR_MINIMAX_API_KEY",
+            "base_url": "https://api.minimaxi.com/v1",
+            "model": "minimax-M3",
+            "endpoint_type": "minimax"
+        }
+    },
+    "fallback_order": ["deepseek-ocr", "qwen-vl", "minimax-m3"],
+    "default_ocr_prompt": "请识别图片中的所有文字，并原样输出，不要添加解释。",
+    "default_structured_prompt": "请仔细识别图片内容，提取关键信息并以结构化方式输出。",
+    "timeout": 180,
+    "max_retries": 3
+}

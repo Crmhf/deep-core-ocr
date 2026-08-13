@@ -102,6 +102,20 @@ export DEEP_CORE_OCR_BASE_URL="http://your-proxy/v1"
 export DEEP_CORE_OCR_DEFAULT_PROVIDER="qwen-vl"
 ```
 
+## 本地脚本生成
+
+`scripts/` 目录为本地工作目录，默认不在 Git 中。首次使用时，在项目根目录运行：
+
+```bash
+# macOS / Linux
+python3 setup.py
+
+# Windows
+python setup.py
+```
+
+该命令会创建 `scripts/` 目录并写入 `ocr.py`、`test_installation.py`、`example_usage.sh`、`requirements.txt`。详细跨平台说明请参考 [references/create-scripts-guide.md](references/create-scripts-guide.md)。
+
 ## 使用方法
 
 ### 基础 OCR
@@ -360,6 +374,7 @@ python scripts/ocr.py \
 
 ## 参考文档
 
+- [跨平台创建 scripts 指南](references/create-scripts-guide.md) - 不同操作系统下创建 scripts 目录与脚本
 - [OCR 场景使用指南](references/ocr-scenario-guide.md) - 五大典型场景详细指南
 - [OCR Prompt 编写指南](references/ocr-prompt-guide.md) - 系统的 Prompt 编写方法
 - [最佳实践](references/best-practices.md) - 汇总最佳实践

@@ -38,13 +38,27 @@
 
 ## 快速开始
 
-### 1. 安装依赖
+### 1. 创建本地 scripts 目录
+
+`scripts/` 为本地工作目录，已加入 `.gitignore`，不会提交到 GitHub。运行根目录的 `setup.py` 一键创建：
+
+```bash
+# macOS / Linux
+python3 setup.py
+
+# Windows
+python setup.py
+```
+
+更多创建方式（手动创建、跨平台命令、可执行权限设置）请参考 [references/create-scripts-guide.md](references/create-scripts-guide.md)。
+
+### 2. 安装依赖
 
 ```bash
 pip install -r scripts/requirements.txt
 ```
 
-### 2. 配置 API 密钥
+### 3. 配置 API 密钥
 
 复制配置模板并填写密钥：
 
@@ -81,9 +95,9 @@ cp config.sample.json config.json
 }
 ```
 
-> **重要**：`config.json` 已加入 `.gitignore`，请勿将其提交到 GitHub。
+> **重要**：`config.json` 与 `scripts/` 已加入 `.gitignore`，请勿将其提交到 GitHub。
 
-### 3. 识别图片文字
+### 4. 识别图片文字
 
 ```bash
 # 基础使用（自动走默认 provider 并降级）
@@ -102,6 +116,7 @@ python scripts/ocr.py --image input/invoice.png
 ## 完整文档
 
 - [SKILL.md](SKILL.md) - 技能主文档、使用示例、参数说明
+- [references/create-scripts-guide.md](references/create-scripts-guide.md) - 跨平台创建 `scripts/` 目录与脚本指南
 - [references/ocr-scenario-guide.md](references/ocr-scenario-guide.md) - 五大典型场景使用指南
 - [references/ocr-prompt-guide.md](references/ocr-prompt-guide.md) - OCR Prompt 编写指南
 - [references/best-practices.md](references/best-practices.md) - 最佳实践汇总
@@ -158,19 +173,23 @@ python scripts/ocr.py \
 deep-core-ocr/
 ├── README.md                       # 本文件
 ├── SKILL.md                        # 技能主文档
+├── setup.py                        # 本地 scripts/ 目录生成脚本
 ├── config.json                     # 配置文件（本地，不提交）
 ├── config.sample.json              # 配置模板
-├── scripts/                        # 执行脚本
+├── scripts/                        # 执行脚本（本地生成，不提交）
 │   ├── ocr.py                      # 主 OCR 脚本
 │   ├── example_usage.sh            # 使用示例
 │   └── test_installation.py        # 安装测试
 ├── references/                     # 指南文档
+│   ├── create-scripts-guide.md     # 跨平台创建 scripts 指南
 │   ├── ocr-scenario-guide.md       # 场景使用指南
 │   ├── ocr-prompt-guide.md         # Prompt 编写指南
 │   └── best-practices.md           # 最佳实践
 ├── output/                         # 最终输出目录
 └── temp/                           # 过程文件目录
 ```
+
+首次使用时，请运行 `python setup.py`（或 `python3 setup.py`）生成本地 `scripts/` 目录。
 
 ## 核心原则
 

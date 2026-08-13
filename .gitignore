@@ -11,3 +11,4 @@ __pycache__/
 *.jpeg
 *.webp
 !output/.gitkeep
+scripts/
